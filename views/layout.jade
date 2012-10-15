@@ -1,0 +1,23 @@
+doctype 5
+
+include conditionals
+
+html
+	head
+		title= title
+
+		include css
+
+		block css
+	body
+		block menu
+		
+		.container-fluid
+			block content
+
+		block footer
+
+		include plugins
+		include application
+
+		block javascript

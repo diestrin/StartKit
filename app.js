@@ -29,7 +29,7 @@ app.configure(function(){
 	app.use(e404.get);
 
 	// Enviroment Variables
-	app.set('title', "Diego Barahona");
+	app.set('title', "NodeJS App Boilder");
 
 	// Temlate Variables
 	app.locals = helpers(app);

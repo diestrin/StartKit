@@ -9,27 +9,31 @@ function loadModules(fileName) {
 		method,
 		path;
 
-	if(!fileName.match(thisFileRegExp) && fileName.match(fileRegExp)){
-		path = fileName.replace(fileRegExp,'').replace(thisFolderRegExp,'');
-		module = require("." + path);
+	if(!fileName.match(thisFileRegExp) && fileName.match(fileRegExp)){ // If the file isn't this file but is a JS file
+		path = fileName.replace(fileRegExp,'').replace(thisFolderRegExp,''); // Remeve the /routes section and the JS extension
+		module = require("." + path); // Load the module
 		
-		path = path.replace(/index$/,"").replace(/_/g,":");
+		// Replace in the files the "_" by ":", and the "&" by "/", and "index" by the root path
+		path = path.replace(/_/g,":").replace(/\&/g,"/").replace(/\/index$/,"/"); 
 		
-		for(method in module){
-			app[method](path, function (req, res){
-				module[method](req, res, app);
-			});
+		for(method in module){ // For each HTTP method registered
+			if(!!app[method] && typeof app[method] === "function") // If the method exists in the Express Library
+				app[method](path, function (req, res){ // Register the method with the current path
+					module[method](req, res, app);
+				});
 		}
 	}
 }
 
 function init(expressApp){
 	app = expressApp;
+
+	// Map the routes directory
 	walk({
 		dir: "./routes/",
 		callback: function(err, paths){
 			if(!err)
-				paths.forEach(loadModules);
+				paths.forEach(loadModules); //For each path found
 		}
 	});
 }

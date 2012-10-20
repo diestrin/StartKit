@@ -3,3 +3,9 @@ exports.init = function (app){
 		title: app.get("title") || "Application"
 	};
 }
+
+exports.text = {
+	capitalize: function (str, all){
+		return str[0].toUpperCase() + str.slice(1);
+	}
+}

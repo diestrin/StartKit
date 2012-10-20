@@ -11,6 +11,24 @@ html
 		block css
 	body
 		block menu
+			.navbar.navbar-inverse.navbar-fixed-top
+				.navbar-inner
+					.container-fluid
+						a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+							span.icon-bar
+							span.icon-bar
+							span.icon-bar
+						a.brand(href="/") NodeJS App Boilder
+						.nav-collapse.collapse
+							ul.nav
+								- if (home)
+									li.active 
+										a Home
+								- else
+									li
+										a(href="/") Home
+								li
+									a(href="https://github.com/diestrin/StartKit") GitHub
 		
 		.container-fluid
 			block content

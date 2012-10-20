@@ -1,5 +1,118 @@
 extends layout
 
 block content
-	.hero-unit
-		h1 Bienvenido al sitio de #{title}
+	.row-fluid
+		.span3
+			.well.sidebar
+				h2 Examples
+				dl
+					dt 
+						|/profile
+						wbr /:name
+						wbr /:midname 
+						wbr --> 
+					dd 
+						a(href="/profile/diego/barahona")
+							|/profile
+							wbr /diego
+							wbr /barahona
+
+					h4 A wrong map
+
+					dt 
+						|/profile
+						wbr /:name
+						wbr /:midname 
+						wbr --> 
+					dd 
+						a(href="/profile/diego")
+							|/profile
+							wbr /diego
+
+		.span9
+			.hero-unit
+				h1 
+					|NodeJS App Boilder
+					wbr plate
+				hr
+				h2 Using this amazing features:
+				dl
+					each feature in features
+						dt
+							a(href=feature.link, target="_blank")= feature.name
+						dd --> #{feature.desc}
+				hr
+				p This application bootstrap will helps you to build a complete backend system and let you focus on build your core application without distractions.	
+
+			.row-fluid
+				.span12
+					h2 Mapping
+
+				.row-fluid
+					.span4.well
+						h3 Directory Tree
+						p
+							|All the pages are maped from the 
+							code /routes 
+							|directory, so any sub-folder tree will be maped in the url.
+							|For example, if you have this file: 
+							code 
+								|/routes
+								wbr /contact
+								wbr /form.js 
+							|you can acces to this page in the URL path 
+							code 
+								|/contact
+								wbr /form
+					
+					.span4.well
+						h3 Index file
+						p
+							|If a file is named 
+							span.text-info index.js 
+							|you don't have to write index to get the page, for example, if you have the file 
+							code 
+								|/routes
+								wbr /calendar
+								wbr /index.js 
+							|you can access to this page in the URL path 
+							code /calendar
+
+					.span4.well
+						h3 URL variables
+						p
+							|If you want to make dynamic URLs, you should use variables.
+							|So for example if want to get the profile page of one account by its ID, you should want to create a URL path like this: 
+							code 
+								|/profile
+								wbr /:userId 
+							|This 
+							code :userId 
+							|will be replaced with something like a number or a word that is your account ID. A real URL path finally be like 
+							code 
+								|/profile
+								wbr /012542 
+							|representing your account ID.
+							|To put variables in your path you need to name your file with an underscore 
+							span.text-info ("_") 
+							|before the variable name, the file will be named like: 
+							code 
+								|/routes
+								wbr /profile
+								wbr /_userId
+							|If you want to use more than one variable, like 
+							code 
+								|/photo
+								wbr /:userId
+								wbr /:photoId
+							|, the file will be named like: 
+							code 
+								|/routes
+								wbr /photo
+								wbr /_userId&amp;
+								wbr _photoId
+							|, the ampercent 
+							span.text-info ("&amp;") 
+							|will be replaced with an slash 
+							span.text-info ("/")
+							|.

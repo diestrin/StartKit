@@ -1,0 +1,19 @@
+.navbar.navbar-inverse.navbar-fixed-top
+	.navbar-inner
+		.container-fluid
+			a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+				span.icon-bar
+				span.icon-bar
+				span.icon-bar
+			a.brand(href="/") NodeJS App Bootstratp
+			.nav-collapse.collapse
+				ul.nav
+					block menuitems
+						if (typeof home === "boolean")
+							li.active 
+								a Home
+						else
+							li
+								a(href="/") Home
+						li
+							a(href="https://github.com/diestrin/StartKit") GitHub

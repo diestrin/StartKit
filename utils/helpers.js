@@ -1,6 +1,7 @@
 exports.init = function (app){
 	return {
-		title: app.get("title") || "Application"
+		title: app.get("title") || "Application",
+		description: app.get("description") || ""
 	};
 }
 

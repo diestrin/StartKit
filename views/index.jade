@@ -1,7 +1,7 @@
 extends layout
 
 block content
-	.row-fluid
+	.row-fluid(ng-controller="indexCtrl")
 		.span3
 			.well.sidebar
 				h2 Examples
@@ -11,11 +11,12 @@ block content
 						wbr /:name
 						wbr /:midname 
 						wbr --> 
-					dd 
-						a(href="/profile/diego/barahona")
+
+					dd(ng-repeat="user in users")
+						a(href="/profile/{{user.name}}/{{user.midname}}")
 							|/profile
-							wbr /diego
-							wbr /barahona
+							wbr /{{user.name}}
+							wbr /{{user.midname}}
 
 					h4 A wrong map
 
@@ -25,9 +26,9 @@ block content
 						wbr /:midname 
 						wbr --> 
 					dd 
-						a(href="/profile/diego")
+						a(href="/profile/{{firstUser.name}}")
 							|/profile
-							wbr /diego
+							wbr /{{firstUser.name}}
 
 		.span9
 			.hero-unit
@@ -116,3 +117,9 @@ block content
 							|will be replaced with an slash 
 							span.text-info ("/")
 							|.
+
+block javascript
+	script(src="/socket.io/socket.io.js")
+	script(src="/javascripts/controllers/index.js")
+	script(src="/javascripts/services/socket.js")
+	script(src="/javascripts/services/users.js")

@@ -1,11 +1,11 @@
-NodeJS App Boilder
-=================
+NodeJS App Bootstrap
+====================
 
 This application bootstrap will helps you to build a complete backend system and let you focus on build your core application without distractions.
 
 ### Out of the box this application have
 
-*	[node](http://nodejs.org/ "NodeJs")
+*	[Node](http://nodejs.org/ "NodeJs")
 	as the backend engine in javascript
 
 *	[Express](http://expressjs.com/ "Express")
@@ -17,11 +17,17 @@ This application bootstrap will helps you to build a complete backend system and
 *	[Less](http://lesscss.org/ "Less")
 	as the CSS pre procesor engine
 
-*	[bootstrap](http://twitter.github.com/bootstrap/ "Twitter Bootstrap")
+*	[Twitter Bootstrap](http://twitter.github.com/bootstrap/ "Twitter Bootstrap")
 	as the main CSS framework
 
-*	[fontawesome](http://fortawesome.github.com/Font-Awesome/ "Font-Awesome")
+*	[Font-Awesome](http://fortawesome.github.com/Font-Awesome/ "Font-Awesome")
 	as the vectorial icons library
+
+*	[AngularJS](http://angularjs.org/ "AngularJS")
+	as the client MVC framework
+
+*	[Socket.IO](http://socket.io/ "Socket.IO")
+	as the Real Time Connection library
 
 ***
 

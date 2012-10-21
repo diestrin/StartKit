@@ -4,7 +4,9 @@
 
 var express = require('express'),
 	less = require('less-middleware'),
+	socketIO = require('socket.io'),
 	routes = require('./routes/loader'),
+	socketEvents = require('./socket/init'),
 	e404 = require('./routes/404'),
 	helpers = require('./utils/helpers').init,
 	http = require('http'),
@@ -29,7 +31,8 @@ app.configure(function(){
 	app.use(e404.get);
 
 	// Enviroment Variables
-	app.set('title', "NodeJS App Boilder");
+	app.set('title', "NodeJS App Bootstrap");
+	app.set('description', "A NodeJS Application Bootstrap with some util frameworks, libraries and preprocessors");
 
 	// Temlate Variables
 	app.locals = helpers(app);
@@ -41,6 +44,10 @@ app.configure('development', function(){
 
 routes.init(app); // Defines all the methods and paths for the router
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app).listen(app.get('port'), function(){
 	console.log("Express server listening on port %d", app.get('port'));
 });
+
+var io = socketIO.listen(server);
+
+io.sockets.on('connection', socketEvents);

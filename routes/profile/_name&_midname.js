@@ -7,8 +7,8 @@ var response = require("../../utils/response").response,
 
 function get(req, res, app){
 	app.render('profile', {
-		name: Helpers.text.capitalize(req.params.name),
-		midname: Helpers.text.capitalize(req.params.midname)
+		name: req.params.name,
+		midname: req.params.midname
 	}, function(err, html){
 		response(err, html, res, app);
 	});

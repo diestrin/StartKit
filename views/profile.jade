@@ -1,19 +1,45 @@
 extends layout
 
 block content
-	.row-fluid
+	.row-fluid(ng-controller="profileCtrl")
 		.span3
-			.well.sidebar
-				h2 #{midname}, #{name}
+			.well.sidebar(ng-show="user")
+				h2 {{user.midname}}, {{user.name}}
 
 				dl
-					dt Age
-					dd 25
+					dt(ng-show="user.age") Age
+					dd {{user.age}}
 
-					dt Contry
-					dd Costa Rica
+					dt(ng-show="user.contry") Contry
+					dd {{user.contry}}
 
-					dt Job Position
-					dd Senior Software Engineer
+					dt(ng-show="user.position") Job Position
+					dd {{user.position}}
+
+			.well.sidebar(ng-hide="user")
+				h2 There is no user {{requestUser.name}} {{requestUser.midname}}
 
 		.span9
+			.row-fluid(ng-repeat="message in messages")
+				.span12.well
+					blockquote
+						p {{message.text}}
+						small {{message.time}}
+
+			h3(ng-hide="!user || messages") This user doesn't have messages yet.
+
+			form(ng-submit="send()")
+				textarea.span12(placeholder="send a new message", ng-model="newMessage", rows="2")
+				input.btn.btn-primary(type="submit")
+
+block javascript
+	script
+		var user = {
+			name: "#{name}", 
+			midname: "#{midname}"
+		};
+	script(src="/socket.io/socket.io.js")
+	script(src="/javascripts/controllers/profile.js")
+	script(src="/javascripts/services/socket.js")
+	script(src="/javascripts/services/users.js")
+	script(src="/javascripts/services/messages.js")
